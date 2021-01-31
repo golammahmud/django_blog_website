@@ -1,0 +1,50 @@
+{% extends 'blog/base.html'%}
+{%block title%}home{%endblock%}
+{%block body%}
+
+{% for post in posts %}
+                
+<div class="container-xl ">
+    <article class="media content-section ">
+        <div class="media-body bg-dark text-white  my-4 mr-2">
+            <div class="article-metadata">
+                <img class="rounded-circle account-img mr-3 my-1 p-1" src="{{ post.author.profile.images.url }}" width="90" height='90'>
+                <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                <small class="text-muted">{{ post.date_created|date:"F d, Y" }}</small>
+            </div>
+        <h2><a class="article-title" href="{% url 'post-detail' post.pk post.slug %}">{{ post.title|upper }}</a></h2><br><br>
+        {% if post.p_image %}
+        <img src="{{post.p_image.url}}" class="mb-3" alt=" " width='1100' height='400'>
+        {% endif %}
+        <p class="article-content">{{ post.content|truncatewords:"100" }}<a  href="{% url 'post-detail' post.pk post.slug %}"><h4>Read More the blog...</h4></a></p> 
+        <!-- truncatewords used for limiting the word -->
+        
+        </div>
+    </article>
+</div>
+{% endfor %}
+<div class="container ml-5"> {% if is_paginated %}
+
+  {% if page_obj.has_previous %}
+    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+  {% endif %}
+
+  {% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+      <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+      <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% endif %}
+  {% endfor %}
+
+  {% if page_obj.has_next %}
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+  {% endif %}
+
+{% endif %}</div>
+
+
+
+{%endblock%}

@@ -1,0 +1,73 @@
+  
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="content-section  align-item-center ml-5">
+            <div class="media ml-5 p-4">
+              {% if user.profile.images %}
+              <img class="rounded-circle account-img mr-3 my-1" src="{{ user.profile.images.url }}" width="120" height='120'>
+              {% endif %}
+              <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
+              </div>
+            </div>
+          <div>
+          <div>
+            <h3>User Profile Information Details</h3><hr>
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>First name</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.first_name }}</td>
+                  <td>{{ user.email }}</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        </div>
+        <button> <a href="{%url 'update-account'%}">update account</a> </button>
+        
+      </div>
+
+        </div>
+
+        <div class="col-md-3">
+          <a class='btn btn-outline-info' href="{%url 'post' %} ">My POST</a>
+          <a class='btn btn-outline-info' href="{%url 'create-post'%} ">Create New Post</a>
+        </div>
+    </div>
+{% endblock  %}
+
+
+<!-- <div class="media-body">
+  <h2 class="account-heading">{{ user.username }}</h2>
+  <p class="text-secondary">{{ user.email }}</p>
+</div>
+</div>
+
+<form action="" method='POST' enctype="multipart/form-data"> 
+
+   {% csrf_token%}
+  
+     <legend class='border-bottom mb-4'>Profile Information</legend>
+     {{u_form|crispy}}
+  
+   {{p_form|crispy}}
+   <div class="from-group">
+     <button class='btn btn-outline-info'>Update</button>
+   </div>
+        
+</form>-->

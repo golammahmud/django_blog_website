@@ -1,0 +1,51 @@
+{% extends 'blog/base.html'%}
+{%block title%} post details {%endblock%}
+{%block body%}
+
+    
+        <div class="container-xl ">
+          <article class="media content-section ">
+            <div class="media-body  my-4 mr-2">
+             
+              <!-- <img src="{{post.image.url}}" alt=" " width='600' height='500'> -->
+              <div class="article-metadata">
+                <div class="row">
+                  
+                  <div class="com-md-9">
+                      <img class="rounded-circle account-img mr-3 my-1 p-1" src="{{ object.author.profile.images.url }}" width="90" height='90'>
+                    <!-- <a class="mr-2" href="#">{{ post.author }}</a>
+                    <small class="text-muted">{{ post.date_created|date:"F d, Y" }}</small> -->
+                    <a class="mr-2" href="#">{{ object.author }}</a>
+                    <small class="text-muted">{{ object.date_created|date:"F d, Y" }}</small>
+                  
+                  </div>
+                  <div class="col-md-3" >
+                  {%if object.author == user%}
+                    
+                      <a class='btn btn-info' href="{%url 'post-update' object.pk object.slug%} ">Update</a>
+                      <a class='btn btn-danger'  href="{%url 'post-delete' object.pk object.slug%} ">Delete</a>
+
+                  {%endif%}
+                  </div>
+              </div>
+              
+                </div>
+              <!-- <h2><a class="article-title" href="#">{{ post.title|upper }}</a></h2><br><br> -->
+              <h2><a class="article-title" href="#">{{ object.title|upper }}</a></h2><br><br>
+              {% if post.p_image %}
+              <img src="{{object.p_image.url}}" class="mb-3" alt=" " width='1100' height='400'>
+            {% endif %}
+                
+              <p class="article-content">{{ object.content }}</p> 
+              <div class="fb-comments" data-href="http://127.0.0.1:8000/myblog/{{post.pk}}" data-width="" data-numposts="3"></div>
+              <!-- truncatewords used for limiting the word -->
+              <button class="btn btn-outline-info"><a href="{%url 'home'%}">Back to Main post</a></button>
+              
+              
+            </div>
+          </article>
+        </div>
+   
+
+
+{%endblock%}

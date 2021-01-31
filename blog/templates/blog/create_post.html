@@ -1,0 +1,22 @@
+{% extends 'blog/base.html'%}
+{%block title%} User Registration{%endblock%}
+{%block body%}
+<button class="btn btn-outline-dark"><a href="{%url 'profile'%}">Back to profile</a></button>
+    {% load crispy_forms_tags %}
+    <form action="" method='POST' enctype="multipart/form-data">
+        {% csrf_token%}
+        <div class="container-sm col-md-6 mt-4 bg-dark text-white ">
+          <div class="row">
+                    <div class="col-md-9  p-5">
+                      <h1>Create Post</h1>
+                    <p>Create post below..</p>
+                    <hr>
+              {{form|crispy}}
+              <button type="submit" class="btn btn-outline-info">Create Post</button>
+            </div>
+        </div>
+        </div>
+      </form>
+      
+      
+{%endblock%}
