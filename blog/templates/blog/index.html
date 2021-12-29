@@ -184,14 +184,18 @@ body {
     <div class="card">
         
         <h3>Categories</h3>
-    <ul>
-      <li {% if not category %}class="selected"{% endif %}>
-        <div class="fakeimg"><a href="{% url 'home' %}">All</a></div>
-      </li>
-      {% for c in categories %}
-      <div class="fakeimg"><li><a href="{% url 'category-home-view' c.slug %}">{{ c.name }}</a></li></div>
+    <!-- <ul> -->
+       
+        <div class="fakeimg">
+          <!-- {% if not category %}class="selected"{% endif %} -->
+          {% if not category %}{% endif %}
+          <a href="{% url 'home' %}">All</a>
+        </div><br>
+      
+      {% for c in category %}
+      <div class="fakeimg"><a href="{% url 'category-home-view' c.slug %}">{{ c.name }}</a></div><br>
       {% endfor %}
-    </ul>
+    <!-- </ul> -->
       <div class="fakeimg"><a href="">Latest Post</a> </div><br>
       <div class="fakeimg"> <a href=''>Most Popular post</a> </div><br>
       <div class="fakeimg"><a href="">category</a></div>

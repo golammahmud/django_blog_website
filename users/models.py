@@ -46,11 +46,11 @@ class Profile(models.Model):
     
    
     
-    def save(self):
-        super().save()
+    # def save(self):
+    #     super().save()
         
-        img=Image.open(self.images.path)
-        if img.height>400 or img.width>400:
-            output_size=(400,400)
-            img.thumbnail(output_size)
-            img.save(self.images.path)
+    #     img=Image.open(self.images.path)
+    #     if img.height>400 or img.width>400:
+    #         output_size=(400,400)
+    #         img.thumbnail(output_size)
+    #         img.save(self.images.path)

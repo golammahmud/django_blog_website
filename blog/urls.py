@@ -12,8 +12,8 @@ urlpatterns = [
     
     
     
-    path('',PostListView, name='home'),
-    path('<slug:category_slug>/',PostListView, name='category-home-view'),
+    path('',PostListView.as_view(), name='home'),
+    path('slug:category_slug>/',PostListView.as_view(), name='category-home-view'),
     
     
     
